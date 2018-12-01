@@ -30,18 +30,17 @@ class Day1 extends Day{
             .map((value) => parseInt(value.replace('+', '')));
 
         while (!answer) {
-            sum = frequencyChanges.reduce(function (prev, current, index, arr) {
-                const next = prev + current;
-                if (frequencies[next] && !answer) {
-                    answer = next;
+            for(let i = 0; i < frequencyChanges.length;i++)
+            {
+                sum += frequencyChanges[i];
+                if (frequencies[sum]) {
+                    answer = sum;
+                    break;
                 } else {
-                    frequencies[next] = true;
+                    frequencies[sum] = true;
                 }
-
-                return next
-            }, sum);
+            }
         }
-
         return answer;
     }
 }
