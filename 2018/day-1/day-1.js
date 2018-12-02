@@ -1,5 +1,4 @@
 let Day = require('../../day.js');
-const fs = require('fs');
 
 class Day1 extends Day{
     constructor(callback) {
@@ -8,7 +7,6 @@ class Day1 extends Day{
     }
 
     part1(input) {
-
         const frequencies = input.split('\r\n');
         const answer = [...frequencies]
             .map(function (value) {

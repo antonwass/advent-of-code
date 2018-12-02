@@ -1,7 +1,7 @@
 let Day1 = require('./day-1/day-1.js');
-// let Day2 = require('./day-2/day-2.js');
+let Day2 = require('./day-2/day-2.js');
 
-let date = 1;
+let date = 2;
 let challenges = {};
 
 if (process.argv.length > 2) {
@@ -9,6 +9,9 @@ if (process.argv.length > 2) {
     switch (process.argv[2]) {
         case '1':
             new Day1((day, result)=>console.log(result)).run();
+            break;
+            case '2':
+            new Day2((day, result)=>console.log(result)).run();
             break;
 
         default:
@@ -19,7 +22,7 @@ if (process.argv.length > 2) {
 } else {
     // run all challenges
     new Day1(resultHandler).run();
-    // new Day2(resultHandler).run();
+    new Day2(resultHandler).run();
     // new Day3(resultHandler).run();
     // new Day4(resultHandler).run();
     // new Day5(resultHandler).run();
