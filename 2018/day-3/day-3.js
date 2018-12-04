@@ -37,7 +37,7 @@ class Day3 extends Day {
                 answer++;
             }
         }
-        console.log(answer);
+        // console.log(answer);
         return answer;
     }
 
