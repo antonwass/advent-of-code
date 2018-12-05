@@ -3,7 +3,7 @@ let Day2 = require('./day-2/day-2.js');
 let Day3 = require('./day-3/day-3.js');
 let Day4 = require('./day-4/day-4.js');
 
-let date = 2;
+let date = 4;
 let challenges = {};
 
 if (process.argv.length > 2) {

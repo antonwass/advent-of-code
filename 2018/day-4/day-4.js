@@ -167,14 +167,14 @@ class Day4 extends Day {
             
         }
 
-        console.log(sleepSchedule);
+        //console.log(sleepSchedule);
         // console.log(guardMinutes);
         //console.log('schedule', JSON.stringify(sleepSchedule));
-        console.log('guard', sleepiestGuard);
-        console.log('guardTotal', sleepSchedule[sleepiestGuard].total);
-        console.log('sleepiestMinute', sleepiestMinute);
+        //console.log('guard', sleepiestGuard);
+        //console.log('guardTotal', sleepSchedule[sleepiestGuard].total);
+        //console.log('sleepiestMinute', sleepiestMinute);
         answer = sleepiestGuard * sleepiestMinute;
-        console.log('answer', answer);
+        //console.log('answer', answer);
         return answer;
     }
 }
