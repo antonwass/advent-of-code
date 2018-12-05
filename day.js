@@ -1,6 +1,6 @@
 const fs = require('fs');
 
-class Day2 {
+class Day {
     constructor(callback) {
         this.callback = callback;
         this.answers = {
@@ -43,4 +43,4 @@ class Day2 {
     }
 }
 
-module.exports = Day2;
+module.exports = Day;

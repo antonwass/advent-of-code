@@ -1,9 +1,9 @@
 let Day = require('../../day.js');
 
-class Day2 extends Day {
+class Day5 extends Day {
     constructor(callback) {
         super(callback);
-        this.day = 2;
+        this.day = 5;
     }
     part1(input) {
         let answer;
@@ -18,4 +18,4 @@ class Day2 extends Day {
     }
 }
 
-module.exports = Day2;
+module.exports = Day5;
