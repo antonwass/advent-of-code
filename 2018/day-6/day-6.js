@@ -10,7 +10,6 @@ class Day6 extends Day {
     part1(input) {
         let answer;
 
-
         let coordinates = input.split('\r\n').map((coord) => {
             const split = coord.split(', ');
             return { x: parseInt(split[0]), y: parseInt(split[1]) };
