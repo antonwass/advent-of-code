@@ -63,7 +63,7 @@ class Day7 extends Day {
         }
         next = undefined;
 
-        console.log(answer);
+        // console.log(answer);
         // console.log(answer.split('').sort().join(''))
         return answer;
     }
@@ -92,7 +92,7 @@ class Day7 extends Day {
 
         });
 
-        console.log('steps: ', steps);
+        // console.log('steps: ', steps);
 
         // find first
         let nextSteps = [];
@@ -119,8 +119,8 @@ class Day7 extends Day {
 
         while (isWorking(schedule)) {
             seconds++;
-            console.log('seconds', seconds);
-            console.log('schedule', schedule);
+            // console.log('seconds', seconds);
+            // console.log('schedule', schedule);
             let doneSteps = checkWorkers(schedule, seconds, answer);
             answer = answer.concat(doneSteps);
             doneSteps.forEach(step => {
@@ -155,8 +155,8 @@ class Day7 extends Day {
         }
 
         // answer = seconds;
-        console.log('answer', seconds);
-        console.log(answer);
+        // console.log('answer', seconds);
+        // console.log(answer);
         answer = seconds;
         // console.log(answer.split('').sort().join(''))
         return answer;

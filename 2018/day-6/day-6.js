@@ -237,7 +237,7 @@ class Day6 extends Day {
                 return false;
         })
 
-        console.log(coordinates.length, candidates.length);
+        // console.log(coordinates.length, candidates.length);
 
         let best;
 

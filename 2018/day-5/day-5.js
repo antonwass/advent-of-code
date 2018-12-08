@@ -28,7 +28,7 @@ class Day5 extends Day {
         }
         answer = polymer.length;
 
-        console.log('answer', answer);
+        // console.log('answer', answer);
         return answer;
     }
 
@@ -78,7 +78,7 @@ class Day5 extends Day {
 
         answer = best;
 
-        console.log('answer', answer);
+        // console.log('answer', answer);
         return answer;
     }
 }
