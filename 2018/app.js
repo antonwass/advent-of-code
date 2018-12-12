@@ -9,6 +9,7 @@ let Day8 = require('./day-8/day-8.js');
 let Day9 = require('./day-9/day-9.js');
 let Day10 = require('./day-10/day-10.js');
 let Day11 = require('./day-11/day-11.js');
+let Day12 = require('./day-12/day-12.js');
 
 
 let date = 11;
@@ -50,6 +51,10 @@ if (process.argv.length > 2) {
         case '11':
             new Day11((day, result) => console.log(result)).run();
             break;
+        case '12':
+            new Day12((day, result) => console.log(result)).run();
+            break;
+
 
         default:
             console.log('Could not find challenge')
@@ -69,7 +74,7 @@ if (process.argv.length > 2) {
     new Day9(resultHandler).run();
     new Day10(resultHandler).run();
     new Day11(resultHandler).run();
-    // new Day12(resultHandler).run();
+    new Day12(resultHandler).run();
     // new Day13(resultHandler).run();
     // new Day14(resultHandler).run();
     // new Day15(resultHandler).run();
