@@ -12,8 +12,9 @@ let Day11 = require('./day-11/day-11.js');
 let Day12 = require('./day-12/day-12.js');
 let Day13 = require('./day-13/day-13.js');
 let Day14 = require('./day-14/day-14.js');
+let Day15 = require('./day-15/day-15.js');
 
-let date = 14;
+let date = 15;
 let challenges = {};
 
 if (process.argv.length > 2) {
@@ -61,6 +62,9 @@ if (process.argv.length > 2) {
         case '14':
             new Day14((day, result) => console.log(result)).run();
             break;
+        case '15':
+            new Day15((day, result) => console.log(result)).run();
+            break;
 
 
         default:
@@ -84,7 +88,7 @@ if (process.argv.length > 2) {
     new Day12(resultHandler).run();
     new Day13(resultHandler).run();
     new Day14(resultHandler).run();
-    // new Day15(resultHandler).run();
+    new Day15(resultHandler).run();
     // new Day16(resultHandler).run();
     // new Day17(resultHandler).run();
     // new Day18(resultHandler).run();
