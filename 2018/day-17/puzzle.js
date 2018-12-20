@@ -51,10 +51,10 @@ console.log(minX, maxX, minY, maxY, width, height);
 
 let grid = [];
 
-for (let y = 0; y <= maxY+1; y++) {
+for (let y = 0; y <= maxY; y++) {
     let row = [];
     grid.push(row);
-    for (let x = 0; x <= maxX+1; x++) {
+    for (let x = 0; x <= maxX + 1; x++) {
         row.push('.');
     }
 }
@@ -62,59 +62,36 @@ for (let y = 0; y <= maxY+1; y++) {
 console.log(grid[0].length, grid.length);
 
 for (let clay of clayCords) {
-    clay.y = clay.y
-    clay.x = clay.x + Math.ceil(width / 2);
+    clay.y = clay.y;
+    clay.x = clay.x;
     //console.log(clay);
     grid[clay.y][clay.x] = '#';
 }
 
-spring.x = spring.x + Math.ceil(width / 2);
+spring.x = spring.x;
 
 grid[spring.y][spring.x] = '+';
 
+const printFile = (grid) => {
+    let data = '';
+    for (let row of grid)
+        data += row.join('') + '\r\n';
+    fs.writeFile("scan.txt", data, function (err) {
+        if (err) {
+            return console.log(err);
+        }
+    });
+}
 
-
-// for (let i = 0; i < 5; i++) {
-//     let current = { ...spring };
-//     current.y++;
-//     while (grid[current.y][current.x] === '.' || grid[current.y][current.x] === '|') {
-//         grid[current.y][current.x] = '|';
-
-//         current.y += 1;
-//     }
-//     current.y--; // back up one step
-//     print(grid);
-//     // first left
-//     let first = { ...current };
-//     let left = { ...current }, right = { ...current };
-//     left.x--;
-//     console.log(left);
-//     while (grid[left.y][left.x] === '.') {
-//         grid[left.y][left.x] = '|';
-//         left.x--;
-//     }
-//     print(grid);
-
-//     right.x++;
-//     while (grid[right.y][right.x] === '.') {
-//         grid[right.y][right.x] = '|';
-//         right.x++;
-//     }
-//     print(grid);
-//     // then right
-
-//     // settled
-//     grid[first.y][first.x] = '~';
-//     print(grid);
-// }
-
-const calcWater = (grid) => {
+const calcWater = (grid, minY) => {
     let sum = 0;
+    let rowNo = 0;
     for (let row of grid) {
         for (let point of row) {
-            if (point === '|' || point === '~')
+            if ((point === '|' || point === '~') && rowNo >= minY)
                 sum++;
         }
+        rowNo++;
     }
     return sum;
 }
@@ -150,15 +127,6 @@ const flow = (grid, point) => {
     if (grid.length <= point.y)
         return 'overflow';
 
-    // if (grid[point.y][point.x] === '#')
-    //     return '#';
-
-    // if (grid[point.y][point.x] === '|')
-    //     return '|';
-
-    // if(grid[point.y][point.x] === '~')
-    //     return '~';
-
     if (grid[point.y][point.x] === '.')
         grid[point.y][point.x] = '|';
 
@@ -170,7 +138,7 @@ const flow = (grid, point) => {
 
     if (down.y < grid.length) {
         if (grid[down.y][down.x] !== '#') {
-            if(flow(grid, down)==='overflow')
+            if (flow(grid, down) === 'overflow')
                 return;
         }
         if ('#~'.includes(grid[down.y][down.x])) {
@@ -178,23 +146,20 @@ const flow = (grid, point) => {
                 grid[point.y][point.x] = '~'
             }
             left.x--;
-            if (!'#~|'.includes(grid[left.y][left.x]))
+            if (!'#~'.includes(grid[left.y][left.x]))
                 flow(grid, left);
 
             right.x++;
             if (!'#~|'.includes(grid[right.y][right.x]))
                 flow(grid, right);
         }
-
-
-        //grid[point.y][point.x] = '|';
     }
 
-    
     return grid[point.y][point.x]
 }
 
 spring.y++;
 flow(grid, spring)
+printFile(grid);
 //print(grid);
-console.log(calcWater(grid));
+console.log(calcWater(grid, minY));
