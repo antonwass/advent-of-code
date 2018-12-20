@@ -38,7 +38,7 @@ data.forEach(row => {
 //console.log(clayCords);
 clayCords.sort((a, b) => a.x - b.x)
 let minX = clayCords[0].x - 1;
-let maxX = clayCords[clayCords.length - 1].x + 1;
+let maxX = clayCords[clayCords.length - 1].x + 2;
 
 clayCords.sort((a, b) => a.y - b.y)
 let minY = clayCords[0].y;
@@ -51,23 +51,24 @@ console.log(minX, maxX, minY, maxY, width, height);
 
 let grid = [];
 
-for (let y = 0; y < width + 1; y++) {
+for (let y = 0; y <= maxY+1; y++) {
     let row = [];
     grid.push(row);
-    for (let x = 0; x < height + 1; x++) {
+    for (let x = 0; x <= maxX+1; x++) {
         row.push('.');
     }
 }
 
-console.log(grid.length, grid[0].length);
+console.log(grid[0].length, grid.length);
 
 for (let clay of clayCords) {
     clay.y = clay.y
-    clay.x = clay.x - 500 + Math.floor(width / 2);
+    clay.x = clay.x + Math.ceil(width / 2);
+    //console.log(clay);
     grid[clay.y][clay.x] = '#';
 }
 
-spring.x = spring.x - 500 + Math.floor(width / 2);
+spring.x = spring.x + Math.ceil(width / 2);
 
 grid[spring.y][spring.x] = '+';
 
@@ -118,23 +119,48 @@ const calcWater = (grid) => {
     return sum;
 }
 
+const flowLeft = (grid, point) => {
+    let left = { ...point };
+    left.x--;
+    while (grid[left.y][left.x] !== '#' && '#~'.includes(grid[left.y + 1][left.x])) {
+        left.x--;
+    }
+
+    if (grid[left.y][left.x] === '#')
+        return true; // wall exists
+    else
+        return false; // no wall
+}
+
+const flowRight = (grid, point) => {
+    let right = { ...point };
+    right.x++;
+    while (grid[right.y][right.x] !== '#' && '#~'.includes(grid[right.y + 1][right.x])) {
+        right.x++;
+    }
+
+    if (grid[right.y][right.x] === '#')
+        return true; // wall exists
+    else
+        return false; // no wall
+}
+
 const flow = (grid, point) => {
-    console.log(point);
+    //print(grid);
     if (grid.length <= point.y)
         return 'overflow';
 
-    if (grid[point.y][point.x] === '#')
-        return '#';
+    // if (grid[point.y][point.x] === '#')
+    //     return '#';
 
-    if (grid[point.y][point.x] === '~')
-        return '~';
+    // if (grid[point.y][point.x] === '|')
+    //     return '|';
 
-    if (grid[point.y][point.x] === '|')
-        return '|';
+    // if(grid[point.y][point.x] === '~')
+    //     return '~';
 
-    print(grid);
-
-    grid[point.y][point.x] = '|';
+    if (grid[point.y][point.x] === '.')
+        grid[point.y][point.x] = '|';
 
     let down = { ...point },
         left = { ...point },
@@ -142,31 +168,33 @@ const flow = (grid, point) => {
 
     down.y++;
 
-    if (down.y < grid.length - 1)
-    {
-        console.log('down');
-        let res = flow(grid, down);
+    if (down.y < grid.length) {
+        if (grid[down.y][down.x] !== '#') {
+            if(flow(grid, down)==='overflow')
+                return;
+        }
+        if ('#~'.includes(grid[down.y][down.x])) {
+            if (flowRight(grid, point) && flowLeft(grid, point)) {
+                grid[point.y][point.x] = '~'
+            }
+            left.x--;
+            if (!'#~|'.includes(grid[left.y][left.x]))
+                flow(grid, left);
+
+            right.x++;
+            if (!'#~|'.includes(grid[right.y][right.x]))
+                flow(grid, right);
+        }
+
+
         //grid[point.y][point.x] = '|';
     }
 
-    console.log(grid.length);
-    if (down.y < grid.length - 1 && (grid[down.y][down.x] === '#' || grid[down.y][down.x] === '|')) {
-        left.x--;
-        console.log('left');
-        let leftRes = flow(grid, left);
-        //grid[point.y][point.x] = '|';
-
-        right.x++;
-        console.log('right');
-        flow(grid, right);
-        //grid[point.y][point.x] = '|';
-    }
-
-
-
-
-
+    
+    return grid[point.y][point.x]
 }
 
-
+spring.y++;
 flow(grid, spring)
+//print(grid);
+console.log(calcWater(grid));
