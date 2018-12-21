@@ -28,96 +28,34 @@ const test = (sample, fun) => {
 
 let functions = [addr, addi, mulr, muli, banr, bani, borr, bori, setr, seti, gtir, gtri, gtrr, eqir, eqri, eqrr];
 
-let samplesThreeOrMoreMatches = 0;
-let samples = [];
-let sampleCounter = 0;
+const instructions = fs.readFileSync('./input.txt', 'utf8').split('\r\n').map(a => a.split(' '));
 
-let opcodes = {};
+//let reg = [1, 0, 0, 0, 0, 0];
+let ip = instructions.shift()[1];
+let reg = [0, 8, 10551282, 9, 0, 7353];
 
-for (let i = 0; i < data.length; i += 4) {
-    let sample = {
-        id: sampleCounter++,
-        before: parseRegister(data[i]),
-        instruction: data[i + 1].split(' ').map(a => parseInt(a)),
-        after: parseRegister(data[i + 2]),
-        matches: []
-    };
+let pointer = 10
+//let pointer = reg[ip];
 
-    samples.push(sample);
+while (true) {
+    //console.log(reg, pointer);
+    if (pointer < 0 || pointer >= instructions.length)
+        break;
+    reg[ip] = pointer;
+    let instr = instructions[pointer];
+    let oc = instr[0];
+    let fun = functions.find(f => f.name === oc);
 
-    for (let f of functions) {
-        if (test(sample, f)) {
-            sample.matches.push(f);
-        }
-    }
+    fun(reg, parseInt(instr[1]), parseInt(instr[2]), parseInt(instr[3]))
 
-    if (sample.matches.length >= 3)
-        samplesThreeOrMoreMatches++;
-
-
-    sample.matches.forEach(f => {
-        if (opcodes[sample.instruction[0]]) {
-            if (!opcodes[sample.instruction[0]].includes(f.name)) {
-                opcodes[sample.instruction[0]].push(f.name);
-            }
-        } else {
-            opcodes[sample.instruction[0]] = [f.name];
-        }
-
-    })
-
-
-
-    // for (let f of functionMatches) {
-    //     if (functionMap[f])
-    //         functionMap[f].push(sample);
-    //     else
-    //         functionMap[f] = [sample];
-    // }
+    pointer = reg[ip];
+    pointer++;
+    console.log(instr, reg, pointer);
 }
-//console.log(samples);
-// for (let sample of samples) {
-//     for (let sampleTest of samples) {
-//         for (let f of sampleTest.matches) {
-//             if (sampleTest.id === sample.id)
-//                 continue;
-//             if (!test(sampleTest, f)) {
-//                 console.log('dd')
-//             }
-//         }
-//     }
-// }
-//console.log(opcodes);
-let opcodeFinal = {}
-while (Object.keys(opcodeFinal).length < 16) {
-    //console.log(Object.keys(opcodeFinal).length);
-    for (let key of Object.keys(opcodes)) {
-        //console.log(key, opcodes[key].join(' '))
-
-        if (opcodes[key].length === 1) {
-            //console.log('match!');
-            opcodeFinal[key] = opcodes[key][0];
-            for (let key2 of Object.keys(opcodes)) {
-                //console.log('before', key2, opcodes[key2].length,)
-                opcodes[key2] = opcodes[key2].filter(oc => opcodeFinal[key] !== oc);
-                //console.log('after', key2, opcodes[key2].length)
-            }
-        }
-    }
-}
-
-console.log(samplesThreeOrMoreMatches);
-console.log(opcodeFinal);
-
-const instructions = fs.readFileSync('./input2.txt', 'utf8').split('\r\n').map(a=>a.split(' ').map(b=>parseInt(b)));
-//console.log(instructions.length);
-let reg = [0,0,0,0];
-for(let instr of instructions)
-{
-    //console.log(instr);
-    let oc = opcodeFinal[instr[0]];
-    let fun = functions.find(f=>f.name === oc);
-
-    fun(reg, instr[1], instr[2], instr[3])
-}
+console.log(ip);
+console.log(instructions);
 console.log(reg)
+
+const calc = () => {
+    
+}
