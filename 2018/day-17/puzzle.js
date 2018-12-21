@@ -88,7 +88,7 @@ const calcWater = (grid, minY) => {
     let rowNo = 0;
     for (let row of grid) {
         for (let point of row) {
-            if (('~'.includes(point)) && rowNo >= minY) // add | to count as water for part 1
+            if (('~'.includes(point)) && rowNo >= minY) // change string to '~|' for part 1
                 sum++;
         }
         rowNo++;
