@@ -10,15 +10,15 @@ const partOne = (input) => {
 }
 
 const partTwo = (input) => {
-
-    let calcFuel = (f) => f > 0 ? f + calcFuel(parseInt(f/3)-2) : 0;
+    let calcFuel = (f) => parseInt(f/3) - 2;
+    let calcFuelForFuel = (f) => f > 0 ? f + calcFuelForFuel(calcFuel(f)) : 0;
 
     return input
         .split('\n')
         .map(x => parseInt(x))
-        .map(mass => parseInt(mass/3)-2)
-        .map(fuel => calcFuel(fuel))
-        .reduce((prev, curr, i) => prev + curr,0);
+        .map(calcFuel) // Map to first fuel consumption
+        .map(calcFuelForFuel) // Sum the fuel consumption for each fuel
+        .reduce((prev, curr, i) => prev + curr,0); // Sum the total fuel consumption for all masses
 }
 
 readInput(1, 1, (err, input) => console.log(partOne(input)));
