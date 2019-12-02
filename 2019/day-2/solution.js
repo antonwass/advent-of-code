@@ -35,24 +35,18 @@ const partOne = (input) => {
 }
 
 const partTwo = (input) => {
-    let done = false;
-    let noun, verb;
-    for(noun = 0; noun <= 99; noun++)
+    for(let noun = 0; noun <= 99; noun++)
     {
-        for(verb = 0; verb <= 99; verb++)
+        for(let verb = 0; verb <= 99; verb++)
         {
             let program = input.split(',').map(x => parseInt(x));
             program[1] = noun;
             program[2] = verb;
         
-            done = compute(program, 0)[0] === 19690720;
-            if(done)
-                break;
+            if(compute(program, 0)[0] === 19690720)
+                return 100 * noun + verb;
         }
-        if(done)
-                break;
     }
-    return 100 * noun + verb
 }
 
 readInput(__dirname+'/input-1.txt', (err, input) => console.log('part one: ' + partOne(input)));
