@@ -1,4 +1,3 @@
-
 const { readInput } = require('../utilities.js');
 
 const partOne = (input) => {
@@ -21,5 +20,5 @@ const partTwo = (input) => {
         .reduce((prev, curr, i) => prev + curr,0); // Sum the total fuel consumption for all masses
 }
 
-readInput(1, 1, (err, input) => console.log(partOne(input)));
-readInput(1, 2, (err, input) => console.log(partTwo(input)));
+readInput(__dirname+'/input-1.txt', (err, input) => console.log(partOne(input)));
+readInput(__dirname+'/input-2.txt', (err, input) => console.log(partTwo(input)));
