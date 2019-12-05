@@ -91,7 +91,7 @@ let paths = [];
 let bestPath;
 
 const move = (time, cave, me, tool, target, path) => {
-    if(bestPath && time>=bestPath.time)
+    if(bestPath && time>=50)
         return; // no point in trying
 
     if (me.x === target.x && me.y === target.y) {
@@ -108,9 +108,9 @@ const move = (time, cave, me, tool, target, path) => {
         return;
     }
 
-    path = path.slice();
-
     path.push(me);
+    path = path.slice();
+    
     let currentRegion = cave[me.y][me.x];
     // up
     if (me.y > 0) {
