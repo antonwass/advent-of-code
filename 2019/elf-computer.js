@@ -10,12 +10,14 @@ const operationTwo = (program, index, modes) =>
     return index + 4;
 } 
 const operationThree = (program, index, modes, input) => {
-    program[program[index+1]] = input;
+    program[program[index+1]] = input.shift();
     return index + 2;
 };
 
-const operationFour = (program, index, modes, input) => {
-    console.log('output:', accessParam(program, index + 1, modes[0]));
+const operationFour = (program, index, modes, input, output) => {
+    //console.log('output:', accessParam(program, index + 1, modes[0]));
+    //output.value = accessParam(program, index + 1, modes[0]);
+    output(accessParam(program, index + 1, modes[0]));
     return index + 2;
 };
 
@@ -61,7 +63,7 @@ const opCodeMap = {
     8: operationEight
 }
 
-const compute = (program, index, input) => {
+const compute = (program, index, input, output) => {
     // select operation
     //console.log(program, index);
     const firstValue = String(program[index]);
@@ -79,9 +81,9 @@ const compute = (program, index, input) => {
     //console.log(paramModes);
     //const instructionValues = paramModes.length;
     //console.log(firstValue, opCode, paramModes, instructionValues)
-    index = operation(program, index, paramModes, input);
+    index = operation(program, index, paramModes, input, output);
     //console.log(program, program[index]);
-    return compute(program, index, input);
+    return compute(program, index, input, output);
 }
 
 module.exports = {
