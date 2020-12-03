@@ -12,14 +12,10 @@ namespace _2020
         static async Task Main(string[] args)
         {
             var inputs = await InputLoader.LoadAsync();
-            SolveDay(new Day01(), "01", inputs);
+            new Day01().PrintResults(inputs);
+            new Day02().PrintResults(inputs);
+            // Add more days here
         }
 
-        static void SolveDay(IDay day, string dayId, IDictionary<string, Input> inputs)
-        {
-            Console.WriteLine($"Day {dayId}");
-            Console.WriteLine($"{day.PartOne(inputs[dayId].PartOne)}");
-            Console.WriteLine($"{day.PartTwo(inputs[dayId].PartTwo)}");
-        }
     }
 }

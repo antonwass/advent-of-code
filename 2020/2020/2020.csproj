@@ -10,7 +10,7 @@
     <None Update="Inputs\Files\01_1.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Inputs\Files\01_2.txt">
+    <None Update="Inputs\Files\02_1.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>

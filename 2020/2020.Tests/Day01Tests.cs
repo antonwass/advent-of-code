@@ -1,13 +1,12 @@
 using System;
-using _2020.Challenges;
+using _2020.Days;
 using Xunit;
 
 namespace _2020.Tests
 {
     public class Day01Tests
     {
-        private readonly string _example1 = @"
-1721
+        private readonly string _example1 = @"1721
 979
 366
 299

@@ -3,16 +3,18 @@ using System.Linq;
 
 namespace _2020.Days
 {
-    public class Day01: IDay
+    public class Day01 : BaseDay
     {
-        public string PartOne(string input)
+        public Day01() : base("01") { }
+
+        public override string PartOne(string input)
         {
             var list = input
                 .Split("\r\n")
                 .Select(int.Parse)
                 .ToArray();
 
-            for(var i = 0; i < list.Length; i++)
+            for (var i = 0; i < list.Length; i++)
             {
                 for (var j = 0; j < list.Length; j++)
                 {
@@ -29,7 +31,7 @@ namespace _2020.Days
             throw new Exception("No solution found!");
         }
 
-        public string PartTwo(string input)
+        public override string PartTwo(string input)
         {
             var list = input
                 .Split("\r\n")
