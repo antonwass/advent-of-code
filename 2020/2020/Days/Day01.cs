@@ -5,12 +5,12 @@ namespace _2020.Days
 {
     public class Day01 : BaseDay
     {
-        public Day01() : base("01") { }
+        public Day01() : base(1) { }
 
         public override string PartOne(string input)
         {
             var list = input
-                .Split("\r\n")
+                .Split("\n")
                 .Select(int.Parse)
                 .ToArray();
 
@@ -34,7 +34,7 @@ namespace _2020.Days
         public override string PartTwo(string input)
         {
             var list = input
-                .Split("\r\n")
+                .Split("\n")
                 .Select(int.Parse)
                 .ToArray();
 

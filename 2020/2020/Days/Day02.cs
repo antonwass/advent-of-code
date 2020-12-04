@@ -8,13 +8,13 @@ namespace _2020.Days
 {
     public class Day02: BaseDay
     {
-        public Day02() : base("02")
+        public Day02() : base(2)
         {
         }
 
         public override string PartOne(string input)
         {
-            var validPasswords = input.Split("\r\n")
+            var validPasswords = input.Split("\n")
                 .Select(x => x.Split(": "))
                 .Select(x => new {Policy = x[0], Password = x[1]})
                 .Where(x => CheckPassword(x.Policy, x.Password));
@@ -36,7 +36,7 @@ namespace _2020.Days
 
         public override string PartTwo(string input)
         {
-            var validPasswords = input.Split("\r\n")
+            var validPasswords = input.Split("\n")
                 .Select(x => x.Split(": "))
                 .Select(x => new { Policy = x[0], Password = x[1] })
                 .Where(x => CheckPasswordTwo(x.Policy, x.Password));

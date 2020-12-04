@@ -10,7 +10,7 @@ namespace _2020.Days
 {
     public class Day03 : BaseDay
     {
-        public Day03() : base("03")
+        public Day03() : base(3)
         {
         }
 

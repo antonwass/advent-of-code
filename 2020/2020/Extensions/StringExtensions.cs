@@ -9,13 +9,13 @@ namespace _2020.Extensions
     public static class StringExtensions
     {
         /// <summary>
-        /// "xxx\r\nxxx" => [x,y]
+        /// "xxx\nxxx" => [x,y]
         /// </summary>
         /// <param name="raw"></param>
         /// <returns>[x,y]</returns>
         public static char[,] To2DArray(this string raw)
         {
-            var split = raw.Split("\r\n");
+            var split = raw.Split("\n");
 
             var newArr = new char[split[0].Length, split.Length];
 

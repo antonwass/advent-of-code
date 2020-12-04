@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace _2020.Inputs
+namespace _2020
 {
-    public class Input
+    public class Configuration
     {
-        public string PartOne { get; set; }
-        public string PartTwo { get; set; }
+        public string Session { get; set; }
     }
 }

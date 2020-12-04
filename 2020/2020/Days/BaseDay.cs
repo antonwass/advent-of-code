@@ -9,20 +9,20 @@ namespace _2020.Days
 {
     public abstract class BaseDay
     {
-        private readonly string _id;
+        private readonly int _id;
 
-        protected BaseDay(string dayId)
+        protected BaseDay(int dayId)
         {
             _id = dayId;
         }
 
-        public void PrintResults(IDictionary<string, Input> inputs)
+        public void PrintResults(IDictionary<int, string> inputs)
         {
             var input = inputs[_id];
 
             Console.WriteLine($"Day {_id}");
-            Console.WriteLine($"\t{PartOne(input.PartOne)}");
-            Console.WriteLine($"\t{PartTwo(input.PartTwo ?? input.PartOne)}");
+            Console.WriteLine($"\t{PartOne(input)}");
+            Console.WriteLine($"\t{PartTwo(input)}");
         }
 
         public abstract string PartOne(string input);
