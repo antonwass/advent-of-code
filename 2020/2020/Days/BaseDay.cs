@@ -18,9 +18,13 @@ namespace _2020.Days
 
         public void PrintResults(IDictionary<int, string> inputs)
         {
-            var input = inputs[_id];
-
             Console.WriteLine($"Day {_id}");
+            if (!inputs.TryGetValue(_id, out var input))
+            {
+                Console.WriteLine("\tMissing input!");
+                return;
+            }
+
             Console.WriteLine($"\t{PartOne(input)}");
             Console.WriteLine($"\t{PartTwo(input)}");
         }

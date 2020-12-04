@@ -42,9 +42,18 @@ namespace _2020.Inputs
                 .Select(int.Parse);
 
             var expected = Enumerable.Range(1, DateTime.Now >= DateTime.Parse($"{year}-12-24") ? 24 : DateTime.Now.Day);
-            var missing = expected.Where(x => files.Contains(x) == false);
+            var missing = expected.Where(x => files.Contains(x) == false).ToArray();
 
             var config = await ReadConfigurationAsync();
+
+            if (config == null && missing.Length > 0)
+            {
+                Console.WriteLine($"Can't donwload missing inputs for days: [{string.Join(", ", missing).TrimEnd(',', ' ')}].");
+                Console.WriteLine("Add configuration or manually add input files to inputs folder. ");
+                Console.WriteLine("For example: 1.txt, 2.txt ...");
+                Console.WriteLine("");
+                return;
+            }
 
             await Task.WhenAll(missing.Select(x => DownloadInputAsync(2020, x, config.Session)));
         }
@@ -65,6 +74,13 @@ namespace _2020.Inputs
 
         private static async Task<Configuration> ReadConfigurationAsync()
         {
+            if (!File.Exists("config.json"))
+            {
+                Console.WriteLine("Could not read configuration from 'config.json'.");
+                return null;
+            }
+                
+
             var reader = new StreamReader("config.json");
             return await JsonSerializer.DeserializeAsync<Configuration>(reader.BaseStream);
         }
