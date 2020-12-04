@@ -10,7 +10,7 @@ namespace _2020.Tests
 979
 366
 299
-675";
+675".Replace("\r", "");
         [Fact]
         public void Test1()
         {

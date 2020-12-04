@@ -10,7 +10,7 @@ namespace _2020.Tests
 {
     public class Day03Tests
     {
-        private readonly string example1 = @"..##.......
+        private readonly string _example1 = @"..##.......
 #...#...#..
 .#....#..#.
 ..#.#...#.#
@@ -20,14 +20,14 @@ namespace _2020.Tests
 .#........#
 #.##...#...
 #...##....#
-.#..#...#.#";
+.#..#...#.#".Replace("\r", "");
 
         [Fact]
         public void Test1()
         {
             var solver = new Day03();
 
-            var result = solver.PartOne(example1);
+            var result = solver.PartOne(_example1);
 
             Assert.Equal("7", result);
         }
@@ -37,7 +37,7 @@ namespace _2020.Tests
         {
             var solver = new Day03();
 
-            var result = solver.PartTwo(example1);
+            var result = solver.PartTwo(_example1);
 
             Assert.Equal("336", result);
         }
