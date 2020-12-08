@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using _2020.Days;
+﻿using _2020.Days;
 using Xunit;
 
 namespace _2020.Tests
@@ -24,7 +19,7 @@ a
 a
 a
 
-b";
+b".Replace("\r", "");
 
         [Fact]
         public void Test1()

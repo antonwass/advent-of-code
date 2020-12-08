@@ -1,4 +1,3 @@
-using System;
 using _2020.Days;
 using Xunit;
 

@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using _2020.Days;
+﻿using _2020.Days;
 using Xunit;
 
 namespace _2020.Tests
 {
     public class Day05Tests
     {
-        private readonly string _example1 = "FBFBBFFRLR\nBFFFBBFRRR\nFFFBBBFRRR\nBBFFBBFRLL";
+        private readonly string _example1 = "FBFBBFFRLR\nBFFFBBFRRR\nFFFBBBFRRR\nBBFFBBFRLL".Replace("\r", "");
 
         [Fact]
         public void Test1()

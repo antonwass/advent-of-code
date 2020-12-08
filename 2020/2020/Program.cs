@@ -18,6 +18,7 @@ namespace _2020
             new Day04().PrintResults(inputs);
             new Day05().PrintResults(inputs);
             new Day06().PrintResults(inputs);
+            new Day07().PrintResults(inputs);
             // Add more days here
         }
 
