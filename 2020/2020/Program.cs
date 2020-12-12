@@ -23,6 +23,7 @@ namespace _2020
             new Day09(preamble: 25).PrintResults(inputs);
             new Day10().PrintResults(inputs);
             new Day11().PrintResults(inputs);
+            new Day12().PrintResults(inputs);
             // Add more days here
         }
 
