@@ -12,4 +12,5 @@ var inputs = new PuzzleInputs(config.Session);
 await new Day01(inputs).Solve();
 await new Day02(inputs).Solve();
 await new Day03(inputs).Solve();
+await new Day04(inputs).Solve();
 // Add more days...
